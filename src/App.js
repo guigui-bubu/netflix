@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+// import du JSON
+import MoviesList from "./assets/movies.json";
+import Logo from "./assets/logo.png";
 
-function App() {
+// import du composant Section
+import Section from "./components/Section";
+
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <img className="logo" src={Logo} />
+      {/* .map() sur le tableau MoviesList (JSON) */}
+      {MoviesList.map((item, index) => {
+        return (
+          // pour chaque élément du tableau MoviesList, on retourne un composant Section
+          // on passe en props au composant Section : category -> item.category et images -> item.images
+          <Section key={index} category={item.category} images={item.images} />
+        );
+      })}
     </div>
   );
-}
+};
 
 export default App;
